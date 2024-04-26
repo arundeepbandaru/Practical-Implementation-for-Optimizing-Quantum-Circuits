@@ -1,0 +1,11 @@
+qreg q[3];
+barrier q[0], q[1], q[2];
+h q[2];
+barrier q[0], q[1], q[2];
+cz q[1], q[2];
+barrier q[0], q[1], q[2];
+h q[2];
+barrier q[0], q[1], q[2];
+cz q[1], q[0];
+cx q[1], q[2];
+barrier q[0], q[1], q[2];
