@@ -63,7 +63,17 @@ These steps collectively build a quantum circuit that involves quantum interfere
 
 ## Output
 
-The output is a string representing the optimized algebraic expression for the quantum circuit. This expression is a simplified version of the circuit, where redundant operations are combined or eliminated, making it easier to analyze the behavior of the circuit.
+The output of the script is a string representing the optimized algebraic expression for the quantum circuit. This expression simplifies the circuit by combining or eliminating redundant operations, making it easier to analyze the circuit's behavior.
+
+### Example Output
+
+After processing, the script produces an optimized algebraic expression as follows:
+
+```
+final simplified version: (I D0 I + Z D1 I)
+```
+
+
 
 ## Core Components
 
@@ -91,18 +101,81 @@ The script has several core components:
 
 ## Functions
 
-- **is_control_for_any(qubit, control_target_pairs)**: Checks if a specific qubit acts as a control qubit in any pair within the provided segment.
-- **create_term(state, control_target_pairs, target_operations, not_control, gate)**: Generates a term in the algebraic expression based on the state of control qubits and the operations defined in the segment.
-- **multiply_segments(segment1, segment2)**: Combines two segments of the algebraic expression.
-- **apply_distributive_law(expression)**: Applies the distributive law to expand the expression, simplifying it further.
-- **apply_rules(expression, rules)**: Applies a set of predefined rules to further simplify the expression.
-- **simplify_identity(expression)**: Reduces expressions involving the identity operation.
-- **simplify_expressions(expressions)**: Applies simplifications across a list of expressions.
+- **is_control_for_any(qubit, control_target_pairs)**:
+  - This function checks whether a specific qubit acts as a control qubit in any pair within the provided segment.
+  - Parameters:
+    - `qubit`: The qubit to be checked.
+    - `control_target_pairs`: A list of dictionaries representing control-target pairs for each segment.
+  - Returns:
+    - `True` if the qubit acts as a control qubit for any target in any pair, otherwise `False`.
+
+- **create_term(state, control_target_pairs, target_operations, not_control, gate)**:
+  - This function generates a term in the algebraic expression based on the state of control qubits and the operations defined in the segment.
+  - Parameters:
+    - `state`: The binary state representing the activation of control qubits.
+    - `control_target_pairs`: A dictionary containing control-target pairs for the current segment.
+    - `target_operations`: A dictionary containing target operations for each target qubit in the segment.
+    - `not_control`: A boolean list indicating whether each qubit is a control qubit.
+    - `gate`: A dictionary containing gate operations for each qubit in the segment.
+  - Returns:
+    - A string representing the term in the algebraic expression.
+
+- **multiply_segments(segment1, segment2)**:
+  - This function combines two segments of the algebraic expression.
+  - Parameters:
+    - `segment1`: The first segment of the expression.
+    - `segment2`: The second segment of the expression.
+  - Returns:
+    - A string representing the combined segments.
+
+- **apply_distributive_law(expression)**:
+  - This function applies the distributive law to expand the expression, simplifying it further.
+  - Parameters:
+    - `expression`: The algebraic expression to which the distributive law will be applied.
+  - Returns:
+    - A string representing the expanded expression after applying the distributive law.
+
+- **apply_rules(expression, rules)**:
+  - This function applies a set of predefined rules to further simplify the expression.
+  - Parameters:
+    - `expression`: The algebraic expression to which the rules will be applied.
+    - `rules`: A dictionary containing predefined rules for simplification.
+  - Returns:
+    - A string representing the simplified expression after applying the rules.
+
+- **simplify_identity(expression)**:
+  - This function reduces expressions involving the identity operation.
+  - Parameters:
+    - `expression`: The algebraic expression to be simplified.
+  - Returns:
+    - A string representing the simplified expression.
+
+- **simplify_expressions(expressions)**:
+  - This function applies simplifications across a list of expressions.
+  - Parameters:
+    - `expressions`: A list of algebraic expressions to be simplified.
+  - Returns:
+    - A list of strings representing the simplified expressions.
+
 
 ## Conclusion
 
 This script is a tool for transforming a quantum circuit described in OpenQASM into a simplified algebraic expression. It facilitates easier analysis and optimization of quantum circuits by abstracting the operations into a mathematical format. The output can be used for further theoretical studies or as input to other optimization tools. The script ensures clarity and accuracy in handling complex quantum computing concepts, making it accessible for users familiar with quantum programming.
 
+## Setup and Usage Guide for `quantumalgosim.py`
 
+### Prerequisites
+Before running the script, ensure you have the following installed:
+- **Python 3.6 or higher**: Download from [python.org](https://www.python.org/downloads/).
+- **Python Libraries**: Install any required libraries using pip (if needed, e.g., numpy for computations)
+### Running the Script
+Follow these steps to run the script:
 
+#### Open Terminal or Command Prompt:
+- Navigate to the directory containing the script and the `input.txt` file.
+
+#### Execute the Script:
+- Run the script by typing the following command:
+  ```bash
+  python quantumalgosim.py
 
